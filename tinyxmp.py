@@ -64,7 +64,10 @@ class Metadata(object):
         return bool(self._xmp)
 
     def get_xmp(self):
-        return self._xmp[:]
+        if self._xmp is not None:
+            return self._xmp[:]
+
+        return self._xmp
 
     def write_xmp(self, new_xmp):
         self._process(new_xmp)
