@@ -8,7 +8,7 @@ making it easily portable across platforms, server installations, etc.
 Installation
 ------------
 ```
-pip install https://github.com/commonsmachinery/tinyxmp/tarball/master
+pip install https://github.com/dkemper/tinyxmp/tarball/master
 ```
 Usage
 -----
