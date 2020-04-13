@@ -56,10 +56,9 @@ def pad_packet(xmp, size):
 class Metadata(object):
     def __init__(self, filename):
         self.filename = filename
-        self._process()
-
         # padded packet as saved in the original file
         self._xmp = None
+        self._process()
 
     def has_xmp(self):
         return bool(self._xmp)
@@ -117,10 +116,10 @@ class JpegMetadata(Metadata):
                 if seg_type == 0xe0:
                     xmp_seg_pos = f.tell()
                 # APP1 EXIF
-                elif seg_type == 0xe1 and seg_data.startswith('Exif\x00\x00'):
+                elif seg_type == 0xe1 and seg_data.startswith(b'Exif\x00\x00'):
                     xmp_seg_pos = f.tell()
                 # APP1 XMP
-                elif seg_type == 0xe1 and seg_data.startswith("http://ns.adobe.com/xap/1.0/\x00"):
+                elif seg_type == 0xe1 and seg_data.startswith(b"http://ns.adobe.com/xap/1.0/\x00"):
                     xmp_seg_pos = file_pos
                     xmp_seg_size = seg_length
                     xmp_packet = seg_data[29:] # strip namespace
